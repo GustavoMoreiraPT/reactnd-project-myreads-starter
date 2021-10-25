@@ -14,6 +14,9 @@ class SearchEngine extends Component {
         this.setState({query: query})
         BooksAPI.search(query)
           .then(books => {
+              if(books === undefined || books.length === 0) {
+                  return;
+              }
               console.log('Checking what books are');
               console.log(books);
             this.setState({
