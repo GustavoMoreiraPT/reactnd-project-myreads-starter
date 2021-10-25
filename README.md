@@ -4,6 +4,21 @@ This is the starter template for the final assessment project for Udacity's Reac
 
 Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
 
+##Project Description
+This projects represents a web app that can keep track of your reading session!
+The main page consists of three different sections:
+- Currently reading - means the book that you are reading
+- Want to read - means the books that you want to read, but did not start yet (stop procastinating!!! :))
+- Read - means the books that were already read.
+
+From a development point of view, the web app uses React, and has the following components:
+- ShelfSelector - Defines a selection that is currently only being used when pressing the book on the main page and allows you to move a book to a different shelf.
+- Book - It renders the information of a book, including the cover page and title. It also uses a ShelfSelectorItem aggregated to move the current book.
+- ListBooks - Renders all the books selected by the user, dividing them into Read, Want to Read and Currently Reading. It also contains a LINK to add new books.
+- SearchEngine - A React component that receives as a prop the universe of available books on the BooksAPI, and it allows the user to do a query and find books in an easy way.
+- BooksAPI - A mock API provided by Udacity to be used as source of books.
+- App - the React entry point, where all components are used.
+
 ## HOW To Run the project
 From the root of the cloned project:
 1. npm install
