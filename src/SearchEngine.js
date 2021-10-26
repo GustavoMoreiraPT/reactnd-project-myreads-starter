@@ -14,15 +14,22 @@ class SearchEngine extends Component {
         this.setState({query: query})
         BooksAPI.search(query)
           .then(books => {
-              console.log('Checking what books are');
-              console.log(books);
-            this.setState({
-              books: books.map(b => {
-                var target = matchedBooks.filter(fb => fb.id === b.id);
-                if (target[0]) {b.shelf = target[0].shelf}
-                return b;
-              })
-            });
+              console.log('-----------------------');
+              if(books === undefined || books.length === 0) {
+                  return;
+              }
+            if(!Array.isArray(books)) {
+                return [];
+            } else {
+                console.log("Risky");
+                this.setState({
+                    books: books.map(b => {
+                      var target = matchedBooks.filter(fb => fb.id === b.id);
+                      if (target[0]) {b.shelf = target[0].shelf}
+                      return b;
+                    })
+                  });
+            }
           });
       }
 
