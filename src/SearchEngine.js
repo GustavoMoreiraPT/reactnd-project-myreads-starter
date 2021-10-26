@@ -12,25 +12,33 @@ class SearchEngine extends Component {
     updateQuery = (query) => {
         const { matchedBooks } = this.props;
         this.setState({query: query})
-        BooksAPI.search(query)
-          .then(books => {
-              console.log('-----------------------');
-              if(books === undefined || books.length === 0) {
-                  return;
+        if(query !== '') {
+            console.log("Query is:")
+            console.log(query)
+            BooksAPI.search(query)
+            .then(books => {
+                console.log('-----------------------');
+                if(!books === undefined || books.error) {
+                    this.setState({books: []});
+                }
+              if(!Array.isArray(books)) {
+                  return [];
+              } else {
+                  console.log("Risky");
+                  this.setState({
+                      books: books.map(b => {
+                        var target = matchedBooks.filter(fb => fb.id === b.id);
+                        if (target[0]) {b.shelf = target[0].shelf}
+                        return b;
+                      })
+                    });
               }
-            if(!Array.isArray(books)) {
-                return [];
-            } else {
-                console.log("Risky");
-                this.setState({
-                    books: books.map(b => {
-                      var target = matchedBooks.filter(fb => fb.id === b.id);
-                      if (target[0]) {b.shelf = target[0].shelf}
-                      return b;
-                    })
-                  });
-            }
-          });
+            });
+        } else {
+            console.log('I am on an empty query');
+            this.setState({query: ''});
+            this.setState({books: []});
+        }
       }
 
     render() {
