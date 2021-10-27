@@ -13,6 +13,7 @@ export class Book extends Component {
                         {books.map((book) => (
                             <li key={book.id} className="book-list-item">
                                 <div className="book">
+                                    <div className="book-title">{book.title}</div>
                                     <div className="book-top">
                                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:  `url(${book.imageLinks !== undefined ? book.imageLinks.thumbnail:""})` }}/>
                                         <ShelfSelector

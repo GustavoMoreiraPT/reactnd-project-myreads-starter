@@ -6,12 +6,12 @@ class ListBooks extends Component {
 
     render() {
         const { books, onBookMoved } = this.props;
-        let currentlyReading, wantToRead, alreadyRead;
+        let currentlyReading, wantToRead, read;
 
         if (books !== 'undefined') {
             currentlyReading = books.filter((book) => book.shelf === "currentlyReading");
             wantToRead = books.filter((book) => book.shelf === "wantToRead");
-            alreadyRead = books.filter((book) => book.shelf === "alreadyRead");
+            read = books.filter((book) => book.shelf === "read");
         }
 
         return (
@@ -36,7 +36,7 @@ class ListBooks extends Component {
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Read</h2>
                             <Book
-                                books={alreadyRead}
+                                books={read}
                                 onBookMoved={onBookMoved}/>
                         </div>
                     </div>
